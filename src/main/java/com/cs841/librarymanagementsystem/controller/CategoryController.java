@@ -23,7 +23,6 @@ public class CategoryController {
 	@RequestMapping("/categories")
 	public String findAllCategories(Model model) {
 		final List<Category> categories = categoryService.findAllCategories();
-
 		model.addAttribute("categories", categories);
 		return "list-categories";
 	}
@@ -31,7 +30,6 @@ public class CategoryController {
 	@RequestMapping("/category/{id}")
 	public String findCategoryById(@PathVariable("id") Long id, Model model) {
 		final Category category = categoryService.findCategoryById(id);
-
 		model.addAttribute("category", category);
 		return "list-category";
 	}

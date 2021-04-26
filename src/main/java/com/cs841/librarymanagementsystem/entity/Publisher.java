@@ -31,6 +31,13 @@ public class Publisher {
 	@Column(name = "name", length = 100, nullable = false, unique = true)
 	private String name;
 
+	@Column (name="type", nullable= true )
+	private String type;
+
+	@Column(name="address",nullable = true)
+	private  String address;
+
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "publishers")
 	private Set<Book> books = new HashSet<Book>();
 

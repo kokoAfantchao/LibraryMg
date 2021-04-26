@@ -2,7 +2,10 @@ package com.cs841.librarymanagementsystem;
 
 import com.cs841.librarymanagementsystem.entity.Author;
 import com.cs841.librarymanagementsystem.entity.Category;
+import com.cs841.librarymanagementsystem.service.AuthorService;
 import com.cs841.librarymanagementsystem.service.BookService;
+import com.cs841.librarymanagementsystem.service.CategoryService;
+import com.cs841.librarymanagementsystem.service.PublisherService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +14,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.cs841.librarymanagementsystem.entity.Book;
 import com.cs841.librarymanagementsystem.entity.Publisher;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class LibrarymanagementsystemApplication {
@@ -19,8 +24,12 @@ public class LibrarymanagementsystemApplication {
 		SpringApplication.run(LibrarymanagementsystemApplication.class, args);
 	}
 
+
 	@Bean
-	public CommandLineRunner initialCreate(BookService bookService) {
+	@Profile(value = "dev")
+	public CommandLineRunner initialCreate(BookService bookServic, PublisherService publisherService,
+										   BookService bookService, CategoryService categoryServic,
+										   AuthorService authorService) {
 		return (args) -> {
 
 			Book book = new Book("Test isbn", "Test name", "Test serial name", "Test description");

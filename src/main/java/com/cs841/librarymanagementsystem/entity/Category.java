@@ -31,6 +31,7 @@ public class Category {
 	@Column(name = "name", length = 50, nullable = false, unique = true)
 	private String name;
 
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "categories")
 	private Set<Book> books = new HashSet<Book>();
 
